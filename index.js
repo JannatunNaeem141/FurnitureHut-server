@@ -31,6 +31,13 @@ async function run() {
             const furniture = await furnitureCollection.findOne(query);
             res.send(furniture);
         });
+
+        // post
+        app.post('/product', async (req, res) => {
+            const newFurniture = req.body;
+            const result = await furnitureCollection.insertOne(newFurniture);
+            res.send(result);
+        })
     }
     finally { }
 }
