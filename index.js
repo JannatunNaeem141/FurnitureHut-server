@@ -37,6 +37,14 @@ async function run() {
             const newFurniture = req.body;
             const result = await furnitureCollection.insertOne(newFurniture);
             res.send(result);
+        });
+
+        // delete
+        app.delete('/product/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await furnitureCollection.deleteOne(query);
+            res.send(result);
         })
     }
     finally { }
