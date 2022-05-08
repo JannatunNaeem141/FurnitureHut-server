@@ -45,6 +45,21 @@ async function run() {
             const query = { _id: ObjectId(id) };
             const result = await furnitureCollection.deleteOne(query);
             res.send(result);
+        });
+
+        // put
+        app.put('/product/:id', async (req, res) => {
+            const id = req.params.id;
+            const updatedProduct = req.body;
+            const filter = { _id: ObjectId(id) };
+            const options = { upsert: true };
+            const updatedDoc = {
+                $set: {
+                    quantity: updatedProduct.quantity
+                }
+            };
+            const result = await furnitureCollection.updateOne(filter, updatedDoc, options);
+            res.send(result);
         })
     }
     finally { }
