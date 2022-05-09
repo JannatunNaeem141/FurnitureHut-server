@@ -66,9 +66,9 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-    res.send('Running server');
+    res.send('Running FurnitureHut server');
 });
 
 app.listen(port, () => {
-    console.log('Listening');
+    console.log('Listening to FurnitureHut !!');
 });
