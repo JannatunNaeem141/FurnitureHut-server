@@ -48,14 +48,12 @@ async function run() {
         });
 
         // put
-        app.put('/product/:id', async (req, res) => {
-            const id = req.params.id;
-            const updatedProduct = req.body;
-            const filter = { _id: ObjectId(id) };
+        app.put('/product', async (req, res) => {
+            const filter = { _id: ObjectId(req.body.id) };
             const options = { upsert: true };
             const updatedDoc = {
                 $set: {
-                    quantity: updatedProduct.quantity
+                    quantity: req.body.testQuantity
                 }
             };
             const result = await furnitureCollection.updateOne(filter, updatedDoc, options);
